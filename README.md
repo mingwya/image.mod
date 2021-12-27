@@ -1,0 +1,2 @@
+# image.mod
+Image handlers
