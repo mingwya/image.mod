@@ -11,7 +11,6 @@ Graphics w, h, 0
 SetClsColor 33, 208, 231
 AutoMidHandle(True)
 
-'Local stream:TStream = ReadStream()
 Local img:TImage = TGifImage.LoadImage("animated-dragon-image-0056.gif")
 Local count:Int = img.frames.Length
 Local frame:Int = 0
