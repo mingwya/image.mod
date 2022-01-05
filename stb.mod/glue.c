@@ -42,3 +42,17 @@ stbi_uc * bmx_stbi_load_image(BBObject * cb, int * width, int * height, int * ch
 
 	return stbi_load_from_callbacks(&callbacks, cb, width, height, channels, 0);
 }
+
+stbi_uc * bmx_stbi_load_gif(BBObject * cb, int **delays, int *x, int *y, int *z, int *comp, int req_comp) {
+
+	stbi_io_callbacks callbacks;
+	callbacks.read = image_stb_TStbioCallbacks__Read;
+	callbacks.skip = image_stb_TStbioCallbacks__Skip;
+	callbacks.eof = image_stb_TStbioCallbacks__Eof;
+
+	return stbi_load_gif_from_callbacks(&callbacks, cb, delays, x, y, z, comp, req_comp);
+}
+
+void bmx_stbi_free_delays(int ** delays) {
+   if (delays && *delays) STBI_FREE(*delays);
+}

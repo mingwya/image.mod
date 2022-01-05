@@ -22,10 +22,10 @@ Import "stb/*.h"
 Import "glue.c"
 
 Extern
-
 	Function stbi_image_free(handle:Byte Ptr)
 	Function bmx_stbi_load_image:Byte Ptr(cb:Object, width:Int Ptr, height:Int Ptr, channels:Int Ptr)
-
+	Function bmx_stbi_load_gif:Byte Ptr(cb:Object, delays:Int Ptr Ptr, x:Int Var, y:Int Var, z:Int Var, comp:Int Var, requiredComp:Int)
+	Function bmx_stbi_free_delays(delays:Int Ptr Ptr)
 End Extern
 
 

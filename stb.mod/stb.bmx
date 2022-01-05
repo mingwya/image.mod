@@ -39,6 +39,8 @@ Import BRL.Pixmap
 Import "common.bmx"
 
 
+Private
+
 Type TPixmapLoaderSTB Extends TPixmapLoader
 
 	Method LoadPixmap:TPixmap( stream:TStream ) Override
@@ -99,6 +101,7 @@ Type TPixmapLoaderSTB Extends TPixmapLoader
 
 End Type
 
+Public
 
 Type TStbioCallbacks
 
@@ -130,4 +133,5 @@ Type TStbioCallbacks
 	
 End Type
 
+Private
 New TPixmapLoaderSTB
