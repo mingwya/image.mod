@@ -13,8 +13,7 @@ Local pix:TPixmap = LoadPixmap("gh2.rw2")
 If pix Then
 	Print pix.width + ", " + pix.height
 Else
-	Print "Unable to load file"
-	End
+	Throw "Unable to load file"
 End If
 
 Graphics 1024, 768, 0

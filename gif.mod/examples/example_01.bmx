@@ -14,8 +14,7 @@ Local img1:TImage = Loader("bali.gif", w, h)
 Local img2:TImage = Loader("fractal_tree.gif", w, h)
 
 If Not img1 Or Not img2 Then
-	Print "Failed to load image"
-	End
+	Throw "Failed to load image"
 End If
 
 Local image:Int

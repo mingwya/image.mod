@@ -14,8 +14,7 @@ Local img1:TImage = Loader("sample-hut-400x300.png", w, h)
 Local img2:TImage = Loader("PNG_transparency_demonstration_1.png", w, h)
 
 If Not img1 Or Not img2 Then
-	Print "Failed to load image"
-	End
+	Throw "Failed to load image"
 End If
 
 Local image:Int

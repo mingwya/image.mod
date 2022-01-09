@@ -13,8 +13,7 @@ AutoMidHandle(True)
 Local img:TImage = LoadImage("earth.tga")
 
 If Not img Then
-	Print "Failed to load image"
-	End
+	Throw "Failed to load image"
 End If
 
 While Not KeyDown(Key_ESCAPE)

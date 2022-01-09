@@ -14,8 +14,7 @@ Local img1:TImage = Loader("marbles.pcx", w, h)
 Local img2:TImage = Loader("gmarbles.pcx", w, h)
 
 If Not img1 Or Not img2 Then
-	Print "Failed to load image"
-	End
+	Throw "Failed to load image"
 End If
 
 Local image:Int

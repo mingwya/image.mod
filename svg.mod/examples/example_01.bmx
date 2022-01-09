@@ -14,8 +14,7 @@ Local img1:TImage = Loader("23.svg", w, h)
 Local img2:TImage = Loader("drawing.svg", w, h)
 
 If Not img1 Or Not img2 Then
-	Print "Failed to load image"
-	End
+	Throw "Failed to load image"
 End If
 
 Local image:Int
