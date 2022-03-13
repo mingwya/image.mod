@@ -32,6 +32,8 @@ ModuleInfo "Author: Bruce A Henderson"
 ModuleInfo "History: 1.00"
 ModuleInfo "History: Initial Release."
 
+ModuleInfo "C_OPTS: -std=c99"
+
 Import BRL.pixmap
 
 Import "common.bmx"
