@@ -47,6 +47,12 @@ ModuleInfo "CC_OPTS: -DJPEGXL_PATCH_VERSION=0"
 
 Import "common.bmx"
 
+Rem
+bbdoc: Number of threads to use during Jxl decoding.
+about: The default is to use only the current thread.
+End Rem
+Global JxlDecoderThreadCount:Int = 0
+
 Private
 
 Type TPixmapLoaderJXL Extends TPixmapLoader
@@ -94,6 +100,7 @@ Type TJxlDecoder
 		End If
 
 		runnerPtr = JxlResizableParallelRunnerCreate(Null)
+		JxlResizableParallelRunnerSetThreads(runnerPtr, Size_T(Max(0, JxlDecoderThreadCount)))
 
 		If bmx_jxl_JxlDecoderSetParallelRunner(decoderPtr, runnerPtr) <> JXL_DEC_SUCCESS Then
 			Return Null
@@ -129,7 +136,7 @@ Type TJxlDecoder
 
 				If info.alpha_bits = 0 Then
 					format.num_channels = 3
-					format.align = 3
+					format.align = 4
 					pixFormat = PF_RGB888
 				End If
 
@@ -139,10 +146,6 @@ Type TJxlDecoder
 
 				Local bufferSize:Size_T
 				If JxlDecoderImageOutBufferSize(decoderPtr, format, bufferSize) <> JXL_DEC_SUCCESS Then
-					Return Null
-				End If
-
-				If bufferSize <> width * height * format.align Then
 					Return Null
 				End If
 
