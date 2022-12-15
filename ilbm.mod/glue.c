@@ -22,6 +22,7 @@
 #include "libilbm/ilbm.h"
 #include "libilbm/ilbmimage.h"
 #include "libamivideo/screen.h"
+#include "libamivideo/viewportmode.h"
 #include "image.h"
 
 #include "brl.mod/blitz.mod/blitz.h"
