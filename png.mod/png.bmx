@@ -1,4 +1,4 @@
-' Copyright (c) 2022 Bruce A Henderson
+' Copyright (c) 2022-2023 Bruce A Henderson
 ' Copyright (c) 2007- Blitz Research Ltd
 '
 ' This software is provided 'as-is', without any express or implied
@@ -24,12 +24,15 @@ SuperStrict
 
 Module Image.PNG
 
-ModuleInfo "Version: 1.08"
+ModuleInfo "Version: 1.09"
 ModuleInfo "Author: Mark Sibly"
 ModuleInfo "License: zlib/libpng"
 ModuleInfo "Copyright: Blitz Research Ltd"
 ModuleInfo "Modserver: BRL"
 
+ModuleInfo "History: 1.09"
+ModuleInfo "History: Update to libpng 1.6.39."
+ModuleInfo "History: Fixed grey alpha png issue."
 ModuleInfo "History: 1.08"
 ModuleInfo "History: Moved to image namespace."
 ModuleInfo "History: 1.07"
@@ -141,8 +144,8 @@ Function LoadPixmapPNG:TPixmap( url:Object )
 					Local src:Byte Ptr=rows[y]
 					Local dst:Byte Ptr=pixmap.PixelPtr(0,y)
 					For Local x:Int=0 Until width
-						Local a:Int=src[0]
-						Local i:Int=src[1]
+						Local i:Int=src[0]
+						Local a:Int=src[1]
 						dst[0]=i
 						dst[1]=i
 						dst[2]=i
