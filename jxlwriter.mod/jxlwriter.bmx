@@ -47,6 +47,8 @@ ModuleInfo "CC_OPTS: -DJPEGXL_PATCH_VERSION=0"
 
 ModuleInfo "CC_OPTS: -DHAVE_PROTOTYPES"
 
+?ptr64
+
 Import "common.bmx"
 
 
@@ -182,3 +184,4 @@ Type TJxlEncoder
 
 End Type
 
+?

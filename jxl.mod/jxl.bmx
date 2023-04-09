@@ -46,6 +46,7 @@ ModuleInfo "CC_OPTS: -DJPEGXL_MAJOR_VERSION=0"
 ModuleInfo "CC_OPTS: -DJPEGXL_MINOR_VERSION=7"
 ModuleInfo "CC_OPTS: -DJPEGXL_PATCH_VERSION=0"
 
+?ptr64
 Import "common.bmx"
 
 Rem
@@ -189,3 +190,5 @@ Type TJxlDecoder
 End Type
 
 New TPixmapLoaderJXL
+
+?
