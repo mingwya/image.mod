@@ -32,7 +32,47 @@ Rem
 bbdoc: A GIF image.
 End Rem
 Type TGifImage
+	
+	Rem
+	bbdoc: Loads one layer/frame of a GIF image as a #TPixmap.
+	returns: A #TPixmap, or #Null if the image could not be loaded.
+	EndRem
+	Function LoadPixmap:TPixmap(url:Object, layer:Int=0)
+		Local stream:TStream=ReadStream( url )
+		If Not stream Throw New TStreamReadException
 
+		Local cb:TStbioCallbacks = New TStbioCallbacks
+		cb.stream = stream
+
+		Local delays:Int Ptr
+		Local w:Int
+		Local h:Int
+		Local layers:Int
+		Local comp:Int
+
+		Local imgPtr:Byte Ptr = bmx_stbi_load_gif(cb, Varptr delays, w, h, layers, comp, 0)
+		If Not imgPtr Then
+			Return Null
+		End If
+
+		Local pitch:Int = w * comp
+		Local size:Size_T = w * h * comp
+		
+		If layer > layers
+			layer = layers-1
+		ElseIf layer < 0
+			layer = 0
+		EndIf
+		
+		Local pixmap:TPixmap = CreatePixmap( w, h, PF_RGBA8888, 4 )
+		MemCopy( pixmap.pixels, imgPtr + pitch * h * layer, size )
+
+		stbi_image_free(imgPtr)
+		bmx_stbi_free_delays(Varptr delays)
+
+		Return pixmap
+	EndFunction
+	
 	Rem
 	bbdoc: Loads a GIF image as a #TImage.
 	returns: A #TImage, or #Null if the image could not be loaded.
@@ -52,7 +92,7 @@ Type TGifImage
 		Local layers:Int
 		Local comp:Int
 
-		Local imgPtr:Byte Ptr = bmx_stbi_load_gif(cb, varptr delays, w, h, layers, comp, 0)
+		Local imgPtr:Byte Ptr = bmx_stbi_load_gif(cb, Varptr delays, w, h, layers, comp, 0)
 		If Not imgPtr Then
 			Return Null
 		End If
@@ -62,16 +102,26 @@ Type TGifImage
 
 		Local image:TImage = CreateImage(w, h, layers, flags)
 
-		For Local i:Int = 0 until layers
+		For Local i:Int = 0 Until layers
 			Local pixmap:TPixmap = CreatePixmap( w, h, PF_RGBA8888, 4 )
 			MemCopy( pixmap.pixels, imgPtr + pitch * h * i, size )
 			image.SetPixmap(i, pixmap, delays[i])
 		Next
 
 		stbi_image_free(imgPtr)
-		bmx_stbi_free_delays(varptr delays)
+		bmx_stbi_free_delays(Varptr delays)
 
 		Return image
 	End Function
 
 End Type
+
+Type TPixmapLoaderGif Extends TPixmapLoader
+
+	Method LoadPixmap:TPixmap( stream:TStream ) Override
+		Return TGifImage.LoadPixmap(stream, 0)
+	End Method
+
+End Type
+
+New TPixmapLoaderGif
