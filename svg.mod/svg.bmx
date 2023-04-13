@@ -53,7 +53,7 @@ Type TSvgImage
 		svgImage = nsvgParse(data, u, dpi)
 		MemFree(u)
 
-		If Not svgImage Then
+		If Not svgImage Or Not svgImage.shapes Then
 			Return Null
 		End If
 
