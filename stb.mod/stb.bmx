@@ -20,11 +20,13 @@ SuperStrict
 
 Module Image.STB
 
-ModuleInfo "Version: 1.03"
+ModuleInfo "Version: 1.04"
 ModuleInfo "Author: Sean Barrett and contributers (see stb_image.h)"
 ModuleInfo "License: ZLib/PNG License"
 ModuleInfo "Credit: Adapted for BlitzMax by Bruce A Henderson"
 
+ModuleInfo "History: 1.04"
+ModuleInfo "History: Update to stb_image 2.28"
 ModuleInfo "History: 1.03"
 ModuleInfo "History: Update to stb_image 2.27"
 ModuleInfo "History: 1.02"
