@@ -120,7 +120,7 @@ Type TGifImage
 			Return Null
 		EndIf
 		
-		Return gif.ToImage()
+		Return gif.ToImage(flags)
 	EndFunction
 	
 	Method Free()
