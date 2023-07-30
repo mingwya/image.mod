@@ -25,6 +25,7 @@ The GIF loader module provides the ability to load GIF format #pixmaps.
 End Rem
 Module Image.GIF
 
+Framework BRL.Blitz
 Import BRL.Max2D
 Import Image.Stb
 
@@ -33,28 +34,32 @@ bbdoc: A GIF image.
 End Rem
 Type TGifImage
 	
-	Rem
-	bbdoc: Loads one layer/frame of a GIF image as a #TPixmap.
-	returns: A #TPixmap, or #Null if the image could not be loaded.
-	EndRem
-	Function LoadPixmap:TPixmap(url:Object, layer:Int=0)
+	Field imgPtr:Byte Ptr
+	Field delays:Int Ptr
+	Field w:Int
+	Field h:Int
+	Field layers:Int
+	Field comp:Int
+	
+	Function Load:TGifImage(url:Object)
 		Local stream:TStream=ReadStream( url )
 		If Not stream Throw New TStreamReadException
-
+		
+		Local gif:TGifImage = New TGifImage()
+		
 		Local cb:TStbioCallbacks = New TStbioCallbacks
 		cb.stream = stream
-
-		Local delays:Int Ptr
-		Local w:Int
-		Local h:Int
-		Local layers:Int
-		Local comp:Int
-
-		Local imgPtr:Byte Ptr = bmx_stbi_load_gif(cb, Varptr delays, w, h, layers, comp, 0)
-		If Not imgPtr Then
+		
+		gif.imgPtr = bmx_stbi_load_gif(cb, Varptr gif.delays, gif.w, gif.h, gif.layers, gif.comp, 0)
+		
+		If Not gif.imgPtr Then
 			Return Null
 		End If
-
+		
+		Return gif
+	EndFunction
+	
+	Method ToPixmap:TPixmap(layer:Int)
 		Local pitch:Int = w * comp
 		Local size:Size_T = w * h * comp
 		
@@ -65,38 +70,13 @@ Type TGifImage
 		EndIf
 		
 		Local pixmap:TPixmap = CreatePixmap( w, h, PF_RGBA8888, 4 )
+		
 		MemCopy( pixmap.pixels, imgPtr + pitch * h * layer, size )
-
-		stbi_image_free(imgPtr)
-		bmx_stbi_free_delays(Varptr delays)
-
+		
 		Return pixmap
-	EndFunction
+	EndMethod
 	
-	Rem
-	bbdoc: Loads a GIF image as a #TImage.
-	returns: A #TImage, or #Null if the image could not be loaded.
-	about: For animated GIF images, the #TImage will be created with the appropriate frames and frame durations.
-	End Rem
-	Function LoadImage:TImage(url:Object, flags:Int = -1)
-
-		Local stream:TStream=ReadStream( url )
-		If Not stream Throw New TStreamReadException
-
-		Local cb:TStbioCallbacks = New TStbioCallbacks
-		cb.stream = stream
-
-		Local delays:Int Ptr
-		Local w:Int
-		Local h:Int
-		Local layers:Int
-		Local comp:Int
-
-		Local imgPtr:Byte Ptr = bmx_stbi_load_gif(cb, Varptr delays, w, h, layers, comp, 0)
-		If Not imgPtr Then
-			Return Null
-		End If
-
+	Method ToImage:TImage(flags:Int=-1)
 		Local pitch:Int = w * comp
 		Local size:Size_T = w * h * comp
 
@@ -112,16 +92,48 @@ Type TGifImage
 		bmx_stbi_free_delays(Varptr delays)
 
 		Return image
-	End Function
+	EndMethod
+	
+	Rem
+	bbdoc: Loads one layer/frame of a GIF image as a #TPixmap.
+	returns: A #TPixmap, or #Null if the image could not be loaded.
+	EndRem
+	Function LoadPixmap:TPixmap(url:Object, layer:Int=0)
+		Local gif:TGifImage = TGifImage.Load(url)
+		
+		If Not gif
+			Return Null
+		EndIf
+		
+		Return gif.ToPixmap(layer)
+	EndFunction
+	
+	Rem
+	bbdoc: Loads a GIF image as a #TImage.
+	returns: A #TImage, or #Null if the image could not be loaded.
+	about: For animated GIF images, the #TImage will be created with the appropriate frames and frame durations.
+	End Rem
+	Function LoadImage:TImage(url:Object, flags:Int=-1)
+		Local gif:TGifImage = TGifImage.Load(url)
+		
+		If Not gif
+			Return Null
+		EndIf
+		
+		Return gif.ToImage(flags)
+	EndFunction
+	
+	Method Free()
+		If imgPtr
+			stbi_image_free(imgPtr)
+		EndIf
+		If delays
+			bmx_stbi_free_delays(Varptr delays)
+		EndIf
+	EndMethod
+	
+	Method Delete()
+		Free()
+	EndMethod
 
 End Type
-
-Type TPixmapLoaderGif Extends TPixmapLoader
-
-	Method LoadPixmap:TPixmap( stream:TStream ) Override
-		Return TGifImage.LoadPixmap(stream, 0)
-	End Method
-
-End Type
-
-New TPixmapLoaderGif
