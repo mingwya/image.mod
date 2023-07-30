@@ -22,7 +22,8 @@
 '
 SuperStrict
 
-Import Pub.ZLib
+Import Archive.ZLib
+Import "../../archive/zlib.mod/zlib/*.h"
 
 Import "libpng/png.c"
 Import "libpng/pngerror.c"
