@@ -26,8 +26,8 @@
 #include "openjpeg.h"
 
 size_t image_jpeg2000_TJpeg2000Image__stream_read(void * p_buffer, size_t p_nb_bytes, void * p_user_data);
-int image_jpeg2000_TJpeg2000Image__stream_seek(OPJ_OFF_T p_nb_bytes, void * p_user_data);
-OPJ_OFF_T image_jpeg2000_TJpeg2000Image__stream_skip(OPJ_OFF_T p_nb_bytes, void * p_user_data);
+int image_jpeg2000_TJpeg2000Image__stream_seek(BBLONG p_nb_bytes, void * p_user_data);
+BBLONG image_jpeg2000_TJpeg2000Image__stream_skip(BBLONG p_nb_bytes, void * p_user_data);
 size_t image_jpeg2000_TJpeg2000Image__stream_size(void * p_user_data);
 BBObject * image_jpeg2000_TJpeg2000Image__NewPixmap(int width, int height);
 void * image_jpeg2000_TJpeg2000Image__PixmapPixels(BBObject * pixmap);

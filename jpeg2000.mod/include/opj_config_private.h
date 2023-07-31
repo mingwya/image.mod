@@ -12,14 +12,18 @@
 #if !defined(__APPLE__)
 # define OPJ_HAVE_MALLOC_H 1
 #endif
-/* check if function `aligned_alloc` exists */
-#define OPJ_HAVE_ALIGNED_ALLOC 1
+
+#if defined(_WIN32)
 /* check if function `_aligned_malloc` exists */
-#define OPJ_HAVE__ALIGNED_MALLOC 0
+#define OPJ_HAVE__ALIGNED_MALLOC 1
+#endif
+
 /* check if function `memalign` exists */
+#if !defined(_WIN32)
 #define OPJ_HAVE_MEMALIGN 1
 /* check if function `posix_memalign` exists */
 #define OPJ_HAVE_POSIX_MEMALIGN 1
+#endif
 
 #if !defined(_POSIX_C_SOURCE)
 #if defined(OPJ_HAVE_FSEEKO) || defined(OPJ_HAVE_POSIX_MEMALIGN)
