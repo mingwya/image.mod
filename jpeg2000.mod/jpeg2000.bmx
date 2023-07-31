@@ -36,6 +36,10 @@ ModuleInfo "Copyright: Wrapper - 2023 Bruce A Henderson"
 
 ModuleInfo "History: 1.00 Initial Release"
 
+?win32
+ModuleInfo "CC_OPTS: -DOPJ_STATIC"
+?
+
 Import "common.bmx"
 
 
@@ -73,7 +77,7 @@ Type TJpeg2000Image
 		End If
 	End Function
 
-	Function _stream_skip:Size_T(count:Size_T, stream:TStream) { nomangle }
+	Function _stream_skip:Long(count:Long, stream:TStream) { nomangle }
 		Return stream.seek(count, SEEK_CUR_)
 	End Function
 
