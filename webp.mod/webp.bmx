@@ -1,4 +1,4 @@
-' Copyright (c) 2021 Bruce A Henderson
+' Copyright (c) 2021-2023 Bruce A Henderson
 '
 ' This software is provided 'as-is', without any express or implied
 ' warranty. In no event will the authors be held liable for any damages
@@ -21,14 +21,20 @@
 '
 SuperStrict
 
+Rem
+bbdoc: Image/WebP Loader
+about: The WebP loader module provides the ability to load WebP format #pixmaps.
+End Rem
 Module Image.Webp
 
-ModuleInfo "Version: 1.00"
+ModuleInfo "Version: 1.01"
 ModuleInfo "License: libwebp - BSD"
 ModuleInfo "License: Wrapper - zlib/libpng"
 ModuleInfo "Copyright: libwebp - 2010 Google"
-ModuleInfo "Copyright: Wrapper - 2022 Bruce A Henderson"
+ModuleInfo "Copyright: Wrapper - 2021-2023 Bruce A Henderson"
 
+ModuleInfo "History: 1.01"
+ModuleInfo "History: Updated to libwebp 1.3.2."
 ModuleInfo "History: 1.00"
 ModuleInfo "History: Initial Release."
 
