@@ -28,12 +28,14 @@ about: The PNG loader module provides the ability to load PNG format #pixmaps.
 End Rem
 Module Image.PNG
 
-ModuleInfo "Version: 1.09"
+ModuleInfo "Version: 1.10"
 ModuleInfo "Author: Mark Sibly"
 ModuleInfo "License: zlib/libpng"
 ModuleInfo "Copyright: Blitz Research Ltd"
 ModuleInfo "Modserver: BRL"
 
+ModuleInfo "History: 1.10"
+ModuleInfo "History: Update to libpng 1.6.40."
 ModuleInfo "History: 1.09"
 ModuleInfo "History: Update to libpng 1.6.39."
 ModuleInfo "History: Fixed grey alpha png issue."

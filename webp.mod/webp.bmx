@@ -27,12 +27,14 @@ about: The WebP loader module provides the ability to load WebP format #pixmaps.
 End Rem
 Module Image.Webp
 
-ModuleInfo "Version: 1.01"
+ModuleInfo "Version: 1.02"
 ModuleInfo "License: libwebp - BSD"
 ModuleInfo "License: Wrapper - zlib/libpng"
 ModuleInfo "Copyright: libwebp - 2010 Google"
 ModuleInfo "Copyright: Wrapper - 2021-2023 Bruce A Henderson"
 
+ModuleInfo "History: 1.02"
+ModuleInfo "History: Updated to libwebp 1.3.2.d7a0506"
 ModuleInfo "History: 1.01"
 ModuleInfo "History: Updated to libwebp 1.3.2."
 ModuleInfo "History: 1.00"

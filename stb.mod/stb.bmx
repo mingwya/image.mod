@@ -1,4 +1,4 @@
-' Copyright (c) 2022 Bruce A Henderson
+' Copyright (c) 2022-2023 Bruce A Henderson
 ' 
 ' This software is provided 'as-is', without any express or implied
 ' warranty. In no event will the authors be held liable for any damages
@@ -20,11 +20,13 @@ SuperStrict
 
 Module Image.STB
 
-ModuleInfo "Version: 1.04"
+ModuleInfo "Version: 1.05"
 ModuleInfo "Author: Sean Barrett and contributers (see stb_image.h)"
 ModuleInfo "License: ZLib/PNG License"
 ModuleInfo "Credit: Adapted for BlitzMax by Bruce A Henderson"
 
+ModuleInfo "History: 1.04"
+ModuleInfo "History: Update to stb_image 2.29"
 ModuleInfo "History: 1.04"
 ModuleInfo "History: Update to stb_image 2.28"
 ModuleInfo "History: 1.03"
