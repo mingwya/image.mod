@@ -1,4 +1,4 @@
-' Copyright (c) 2022 Bruce A Henderson
+' Copyright (c) 2022-2023 Bruce A Henderson
 ' 
 ' This software is provided 'as-is', without any express or implied
 ' warranty. In no event will the authors be held liable for any damages
@@ -24,6 +24,16 @@ about:
 The SVG loader module provides the ability to load SVG format #pixmaps.
 End Rem
 Module Image.SVG
+
+ModuleInfo "Version: 1.01"
+ModuleInfo "Author: 2013-14 Mikko Mononen"
+ModuleInfo "License: ZLib/PNG License"
+ModuleInfo "Credit: Adapted for BlitzMax by Bruce A Henderson"
+
+ModuleInfo "History: 1.01"
+ModuleInfo "History: Update to nanosvg 706eb06"
+ModuleInfo "History: 1.00"
+ModuleInfo "History: Initial Release. nanosvg"
 
 Import BRL.Pixmap
 
