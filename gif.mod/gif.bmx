@@ -25,7 +25,6 @@ The GIF loader module provides the ability to load GIF format #pixmaps.
 End Rem
 Module Image.GIF
 
-Framework BRL.Blitz
 Import BRL.Max2D
 Import Image.Stb
 
