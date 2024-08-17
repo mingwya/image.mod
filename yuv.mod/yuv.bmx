@@ -39,9 +39,8 @@ ModuleInfo "Copyright: Wrapper - 2024 Bruce A Henderson"
 ModuleInfo "History: 1.00"
 ModuleInfo "History: Initial Release."
 
-?raspberrypi
-ModuleInfo "CC_OPTS: -DLIBYUV_DISABLE_NEON -DLIBYUV_DISABLE_SVE"
-?
+ModuleInfo "CC_OPTS: -DLIBYUV_DISABLE_NEON"
+ModuleInfo "CC_OPTS: -DLIBYUV_DISABLE_SVE"
 
 Import brl.pixmap
 
