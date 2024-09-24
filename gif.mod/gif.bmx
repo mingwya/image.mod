@@ -45,12 +45,12 @@ Type TGifImage
 		If Not stream Throw New TStreamReadException
 		
 		Local gif:TGifImage = New TGifImage()
+
+		Local buff:Byte[ stream.size() ]
+		stream.ReadBytes( buff,buff.Length )
 		
-		Local cb:TStbioCallbacks = New TStbioCallbacks
-		cb.stream = stream
-		
-		gif.imgPtr = bmx_stbi_load_gif(cb, Varptr gif.delays, gif.w, gif.h, gif.layers, gif.comp, 0)
-		
+		gif.imgPtr=bmx_stbi_load_gif_memory( buff,buff.Length,Varptr gif.delays,gif.w,gif.h,gif.layers,gif.comp,0 )
+
 		If Not gif.imgPtr Then
 			Return Null
 		End If
