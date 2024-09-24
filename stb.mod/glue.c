@@ -22,7 +22,7 @@
 #define STBI_NO_STDIO
 #define STBI_ONLY_GIF
 #define STBI_ONLY_PIC
-#define STBI_ONLY_PNM
+//#define STBI_ONLY_PNM ' bug?
 
 #include "stb/stb_image.h"
 
@@ -43,6 +43,12 @@ stbi_uc * bmx_stbi_load_image(BBObject * cb, int * width, int * height, int * ch
 	return stbi_load_from_callbacks(&callbacks, cb, width, height, channels, 0);
 }
 
+stbi_uc * bmx_stbi_load_gif_memory(stbi_uc const *buffer,int *len, int **delays, int *x, int *y, int *z, int *comp, int req_comp) {
+
+	return stbi_load_gif_from_memory(buffer, len, delays, x, y, z, comp, req_comp);
+}
+
+/*
 stbi_uc * bmx_stbi_load_gif(BBObject * cb, int **delays, int *x, int *y, int *z, int *comp, int req_comp) {
 
 	stbi_io_callbacks callbacks;
@@ -52,6 +58,7 @@ stbi_uc * bmx_stbi_load_gif(BBObject * cb, int **delays, int *x, int *y, int *z,
 
 	return stbi_load_gif_from_callbacks(&callbacks, cb, delays, x, y, z, comp, req_comp);
 }
+*/
 
 void bmx_stbi_free_delays(int ** delays) {
    if (delays && *delays) STBI_FREE(*delays);
